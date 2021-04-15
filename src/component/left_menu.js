@@ -9,19 +9,19 @@ const LeftMenu = () => {
 
   let history = useHistory();
 
-  // useEffect(() => {
-  //   if (localStorage.usertoken) {
-  //     const token = localStorage.usertoken;
-  //     const decoded = jwt_decode(token);
+  useEffect(() => {
+    if (localStorage.usertoken) {
+      const token = localStorage.usertoken;
+      const decoded = jwt_decode(token);
 
-  //     if (decoded.exp < (new Date().getTime() + 1) / 1000) {
-  //       localStorage.removeItem("usertoken");
-  //       return history.push("/");
-  //     }
-  //   } else {
-  //     return history.push("/");
-  //   }
-  // }, [history]);
+      if (decoded.exp < (new Date().getTime() + 1) / 1000) {
+        localStorage.removeItem("usertoken");
+        return history.push("/");
+      }
+    } else {
+      return history.push("/");
+    }
+  }, [history]);
 
   const logout = () => {
     localStorage.removeItem("usertoken");
